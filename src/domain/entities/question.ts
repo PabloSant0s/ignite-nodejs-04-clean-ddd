@@ -1,11 +1,15 @@
 import { Entity } from "../../core/entities/entity"
+import { UniqueEntityID } from "../../core/entities/unique-entity-id"
 import { Slug } from "./value-objects/slug"
 
 interface QuestioProps{
+  authorId: UniqueEntityID
+  bestAnswerId?: UniqueEntityID
   title: string
   slug: Slug
   content: string
-  authorId: string
+  createdAt: Date
+  updatedAt?: Date
 }
 export class Question extends Entity<QuestioProps>{
   
@@ -21,7 +25,7 @@ export class Question extends Entity<QuestioProps>{
     return this.props.content
   }
 
-  public get authorId() : string {
+  public get authorId() : UniqueEntityID {
     return this.props.authorId
   }
 }
