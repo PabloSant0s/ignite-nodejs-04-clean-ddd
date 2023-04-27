@@ -1,15 +1,15 @@
-import { randomUUID } from "crypto"
+import { UniqueEntityID } from "./unique-entity-id"
 
 export class Entity<Props>{
-  private _id: string
+  private _id: UniqueEntityID
   protected props: Props
 
   protected constructor(props: Props, id?: string){
-    this._id = id ?? randomUUID()
+    this._id = new UniqueEntityID(id)
     this.props = props
   }
 
-  public get id() : string {
+  public get id() : UniqueEntityID {
     return this._id
   }
   
