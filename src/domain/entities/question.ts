@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
-import { Entity } from "../../core/entities/entity"
-import { Optional } from "../../core/entities/types/optional"
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
+import { Entity } from "@/core/entities/entity"
+import { Optional } from "@/core/entities/types/optional"
+import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 import { Slug } from "./value-objects/slug"
 
 interface QuestioProps{
