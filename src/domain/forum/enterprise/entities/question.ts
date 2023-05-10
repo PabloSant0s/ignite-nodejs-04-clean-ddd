@@ -42,8 +42,8 @@ export class Question extends Entity<QuestioProps> {
     return this.props.title
   }
 
-  public get slug(): string {
-    return this.props.slug.value
+  public get slug(): Slug {
+    return this.props.slug
   }
 
   public get content(): string {
