@@ -80,4 +80,8 @@ export class Question extends Entity<QuestionProps> {
     this.props.slug = Slug.createFromText(title)
     this.touch()
   }
+
+  public set bestAnswerId(answerId: UniqueEntityID | undefined) {
+    this.props.bestAnswerId = answerId
+  }
 }
