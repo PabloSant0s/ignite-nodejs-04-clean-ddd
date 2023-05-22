@@ -3,7 +3,7 @@ import { Optional } from '@/core/types/optional'
 import { Comment, CommentProps } from './comment'
 
 export interface AnswerCommentProps extends CommentProps {
-  answerId: string
+  answerId: UniqueEntityID
 }
 
 export class AnswerComment extends Comment<AnswerCommentProps> {
@@ -11,7 +11,7 @@ export class AnswerComment extends Comment<AnswerCommentProps> {
     return this.props.answerId
   }
 
-  public create(
+  static create(
     props: Optional<AnswerCommentProps, 'createdAt'>,
     id?: UniqueEntityID,
   ) {
