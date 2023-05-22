@@ -11,6 +11,7 @@ export function makeAnswer(
       content: faker.lorem.text(),
       authorId: new UniqueEntityID(),
       questionId: new UniqueEntityID(),
+      createdAt: answerProps.createdAt ?? new Date(),
       ...answerProps,
     },
     id,
