@@ -22,12 +22,15 @@ describe('Comment on answer Use Case', () => {
     const answer = makeAnswer({ authorId: new UniqueEntityID('author-1') })
     await answersRepository.create(answer)
 
-    const { answerComment } = await sut.execute({
+    const result = await sut.execute({
       authorId: 'author-1',
       content: 'Comentario teste',
       answerId: answer.id.toString(),
     })
 
-    expect(answerComment.content).toEqual('Comentario teste')
+    expect(result.isRight()).toBeTruthy()
+    expect(answerCommentsRepository.items[0].content).toEqual(
+      'Comentario teste',
+    )
   })
 })

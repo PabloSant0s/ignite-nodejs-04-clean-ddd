@@ -40,11 +40,11 @@ describe('Choose Question Best Answer Use Case', () => {
     await questionRepository.create(question)
     await answerRepository.create(answer)
 
-    await expect(() => {
-      return sut.execute({
-        answerId: answer.id.toString(),
-        authorId: 'author-2',
-      })
-    }).rejects.toBeInstanceOf(Error)
+    const result = await sut.execute({
+      answerId: answer.id.toString(),
+      authorId: 'author-2',
+    })
+
+    expect(result.isLeft()).toBeTruthy()
   })
 })
