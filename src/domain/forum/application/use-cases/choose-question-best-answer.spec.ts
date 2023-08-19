@@ -4,13 +4,18 @@ import { ChooseQuestionBestAnswerUseCase } from './choose-question-best-answer'
 import { makeQuestion } from '@test/factories/make-question'
 import { makeAnswer } from '@test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { InMemoryQuestionAttachmentsRepository } from '@test/repositories/in-memory-question-attachments-repository'
 
 let questionRepository: InMemoryQuestionsRepository
+let questionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let answerRepository: InMemoryAnswerRepository
 let sut: ChooseQuestionBestAnswerUseCase
 describe('Choose Question Best Answer Use Case', () => {
   beforeEach(() => {
-    questionRepository = new InMemoryQuestionsRepository()
+    questionAttachmentsRepository = new InMemoryQuestionAttachmentsRepository()
+    questionRepository = new InMemoryQuestionsRepository(
+      questionAttachmentsRepository,
+    )
     answerRepository = new InMemoryAnswerRepository()
     sut = new ChooseQuestionBestAnswerUseCase(
       questionRepository,
