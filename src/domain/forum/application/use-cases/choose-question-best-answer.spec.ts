@@ -5,10 +5,12 @@ import { makeQuestion } from '@test/factories/make-question'
 import { makeAnswer } from '@test/factories/make-answer'
 import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 import { InMemoryQuestionAttachmentsRepository } from '@test/repositories/in-memory-question-attachments-repository'
+import { InMemoryAnswerAttachmentsRepository } from '@test/repositories/in-memory-answer-attachments-repository'
 
 let questionRepository: InMemoryQuestionsRepository
 let questionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
 let answerRepository: InMemoryAnswerRepository
+let answerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
 let sut: ChooseQuestionBestAnswerUseCase
 describe('Choose Question Best Answer Use Case', () => {
   beforeEach(() => {
@@ -16,7 +18,8 @@ describe('Choose Question Best Answer Use Case', () => {
     questionRepository = new InMemoryQuestionsRepository(
       questionAttachmentsRepository,
     )
-    answerRepository = new InMemoryAnswerRepository()
+    answerAttachmentsRepository = new InMemoryAnswerAttachmentsRepository()
+    answerRepository = new InMemoryAnswerRepository(answerAttachmentsRepository)
     sut = new ChooseQuestionBestAnswerUseCase(
       questionRepository,
       answerRepository,

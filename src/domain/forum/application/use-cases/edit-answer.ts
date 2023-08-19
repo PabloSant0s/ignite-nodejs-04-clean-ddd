@@ -3,11 +3,14 @@ import { Answer } from '../../enterprise/entities/answer'
 import { AnswerRepository } from '../repositories/answers-repository'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 import { NotAllowedError } from './errors/not-allowed-error'
+import { AnswerAttachment } from '../../enterprise/entities/answer-attachment'
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
 
 interface EditAnswerUseCaseRequest {
   answerId: string
   authorId: string
   content: string
+  attachmentsIds: string[]
 }
 type EditAnswerUseCaseResponse = Either<
   ResourceNotFoundError | NotAllowedError,
@@ -23,6 +26,7 @@ export class EditAnswerUseCase {
     authorId,
     answerId,
     content,
+    attachmentsIds,
   }: EditAnswerUseCaseRequest): Promise<EditAnswerUseCaseResponse> {
     const answer = await this.answerRepository.findById(answerId)
 
@@ -35,6 +39,15 @@ export class EditAnswerUseCase {
     }
 
     answer.content = content
+
+    const answerAttachments = attachmentsIds.map((attachmentId) =>
+      AnswerAttachment.create({
+        answerId: answer.id,
+        attachmentId: new UniqueEntityID(attachmentId),
+      }),
+    )
+
+    answer.attachments.update(answerAttachments)
 
     await this.answerRepository.save(answer)
 
