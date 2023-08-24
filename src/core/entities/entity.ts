@@ -12,4 +12,12 @@ export abstract class Entity<Props> {
   public get id(): UniqueEntityID {
     return this._id
   }
+
+  public equals(entity: Entity<Props>) {
+    if (entity === this) return true
+
+    if (this._id.equals(entity.id)) return true
+
+    return false
+  }
 }
