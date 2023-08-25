@@ -5,7 +5,7 @@ import {
 } from '@/domain/forum/enterprise/entities/answer-attachment'
 
 export function makeAnswerAttachment(
-  props: Partial<AnswerAttachmentProps>,
+  props: Partial<AnswerAttachmentProps> = {},
   id?: UniqueEntityID,
 ) {
   return AnswerAttachment.create(

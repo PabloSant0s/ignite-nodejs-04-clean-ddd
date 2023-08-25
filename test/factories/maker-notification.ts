@@ -6,7 +6,7 @@ import {
 import { faker } from '@faker-js/faker'
 
 export function makeNotification(
-  props: Partial<NotificationProps>,
+  props: Partial<NotificationProps> = {},
   id?: UniqueEntityID,
 ) {
   const notification = Notification.create(

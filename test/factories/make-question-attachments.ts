@@ -5,7 +5,7 @@ import {
 } from '@/domain/forum/enterprise/entities/question-attachment'
 
 export function makeQuestionAttachments(
-  props: Partial<QuestionAttachmentProps>,
+  props: Partial<QuestionAttachmentProps> = {},
   id?: UniqueEntityID,
 ) {
   return QuestionAttachment.create(

@@ -6,7 +6,7 @@ import {
 import { faker } from '@faker-js/faker'
 
 export function makeQuestionComment(
-  props: Partial<QuestionCommentProps>,
+  props: Partial<QuestionCommentProps> = {},
   id?: UniqueEntityID,
 ) {
   const questionComment = QuestionComment.create(
